@@ -1,0 +1,38 @@
+package com.vh.cleanarchproducts.dataprovider.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+
+@Data
+@Table(name = "products_tbl")
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProductEntity {
+
+    @Id
+    private String id;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    private Long stock;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private ProductStatusEntityEnum statusEntityEnum;
+
+
+    public ProductEntity(String id, String name, String description, BigDecimal price, Long stock) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.stock = stock;
+        this.statusEntityEnum = ProductStatusEntityEnum.AVAILABLE;
+    }
+
+
+}
