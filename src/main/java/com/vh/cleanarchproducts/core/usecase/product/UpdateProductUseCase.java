@@ -4,6 +4,6 @@ import com.vh.cleanarchproducts.core.domain.Product;
 
 public interface UpdateProductUseCase {
 
-    void updateProduct(String id,Product product);
+    Product updateProduct(String id,Product product);
 
 }

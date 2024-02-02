@@ -16,8 +16,9 @@ public class UpdateProductProviderImpl implements UpdateProductProvider {
     @Autowired
     private ProductEntityMapper productEntityMapper;
     @Override
-    public void updateProduct(Product product) {
-        this.productEntityRepository.save(productEntityMapper.toProductUpdateEntity(product));
+    public Product updateProduct(Product product) {
+        var productEntity = productEntityMapper.toProductUpdateEntity(product);
+        return productEntityMapper.toProduct(this.productEntityRepository.save(productEntity));
 
     }
 }

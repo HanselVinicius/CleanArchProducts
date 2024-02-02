@@ -4,6 +4,6 @@ import com.vh.cleanarchproducts.core.domain.Product;
 
 public interface UpdateProductProvider {
 
-    void updateProduct(Product product);
+    Product updateProduct(Product product);
 
 }

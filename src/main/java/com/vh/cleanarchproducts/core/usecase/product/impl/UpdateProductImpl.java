@@ -17,9 +17,9 @@ public class UpdateProductImpl implements UpdateProductUseCase {
     }
 
     @Override
-    public void updateProduct(String id,Product product) {
+    public Product updateProduct(String id,Product product) {
         this.findProductByIdUseCase.findProductById(id);
         product.setId(id);
-        this.updateProductProvider.updateProduct(product);
+        return  this.updateProductProvider.updateProduct(product);
     }
 }
