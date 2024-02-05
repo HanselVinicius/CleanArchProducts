@@ -38,7 +38,8 @@ public class ProductMapperImpl implements ProductMapper {
                 productRequest.getDescription(),
                 productRequest.getPrice(),
                 productRequest.getStock(),
-                toProductStatusEnum(productRequest.getStatus())
+                toProductStatusEnum(productRequest.getStatus()),
+                true
         );
     }
 

@@ -19,6 +19,7 @@ public class Product {
     private BigDecimal price;
     private Long stock;
     private ProductStatusEnum productStatusEnum;
+    private boolean isActive;
 
 
     public Product( String name, String description, BigDecimal price, Long stock) {
@@ -27,14 +28,20 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.productStatusEnum = ProductStatusEnum.AVAILABLE;
+        this.isActive = true;
     }
 
 
-    public Product(String name, String description, BigDecimal price, Long stock, ProductStatusEnum productStatusEnum) {
+    public Product(String name, String description, BigDecimal price, Long stock, ProductStatusEnum productStatusEnum,boolean isActive) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.productStatusEnum = productStatusEnum;
+        this.isActive = isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

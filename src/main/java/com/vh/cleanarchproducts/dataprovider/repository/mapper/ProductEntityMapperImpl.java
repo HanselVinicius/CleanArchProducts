@@ -36,8 +36,22 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
                 product.getDescription(),
                 product.getPrice(),
                 product.getStock(),
-                toProductStatusEntityEnum(product.getProductStatusEnum()
-                )
+                toProductStatusEntityEnum(product.getProductStatusEnum()),
+                product.isActive()
+
+        );
+    }
+
+    @Override
+    public ProductEntity toProductDeleteEntity(Product product) {
+        return new ProductEntity(product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getStock(),
+                toProductStatusEntityEnum(product.getProductStatusEnum()),
+                false
+
         );
     }
 

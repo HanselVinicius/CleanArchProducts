@@ -1,7 +1,9 @@
 package com.vh.cleanarchproducts.core.dataprovider;
 
+import com.vh.cleanarchproducts.core.domain.Product;
+
 public interface DeleteProductByIdProvider {
 
-    void deleteProductById(String id);
+    void deleteProductById(Product product);
 
 }

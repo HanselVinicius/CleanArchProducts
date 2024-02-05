@@ -1,5 +1,7 @@
 package com.vh.cleanarchproducts.entrypoint.controller;
 
+import com.vh.cleanarchproducts.core.domain.Product;
+import com.vh.cleanarchproducts.core.usecase.product.DeleteProductByIdUseCase;
 import com.vh.cleanarchproducts.core.usecase.product.FindProductByIdUseCase;
 import com.vh.cleanarchproducts.core.usecase.product.InsertProductUseCase;
 import com.vh.cleanarchproducts.core.usecase.product.UpdateProductUseCase;
@@ -8,8 +10,12 @@ import com.vh.cleanarchproducts.entrypoint.controller.mapper.ProductUpdateReques
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.request.ProductInsertRequest;
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.response.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +34,9 @@ public class ProductController {
     private UpdateProductUseCase updateProductUseCase;
 
     @Autowired
+    private DeleteProductByIdUseCase deleteProductByIdUseCase;
+
+    @Autowired
     private ProductMapper productMapper;
 
     @GetMapping("/{id}")
@@ -38,6 +47,7 @@ public class ProductController {
     }
 
     @PostMapping
+    @Transactional
     @Operation(summary = "Insere um produto")
     public ResponseEntity insertProduct(@RequestBody @Valid ProductInsertRequest productRequest) {
         var createdProduct = insertProductUseCase.insertProduct(productMapper.productInsertRequestToProduct(productRequest));
@@ -45,6 +55,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
+    @Transactional
     @Operation(summary = "Atualiza um produto")
     public ResponseEntity updateProduct(@PathVariable String id, @RequestBody @Valid ProductUpdateRequest productRequest) {
         var productToUpdate = productMapper.productUpdateRequestToProduct(productRequest);
@@ -52,7 +63,23 @@ public class ProductController {
         return ResponseEntity.ok(productResponse);
     }
 
+    //delete
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deleta um produto")
+    public ResponseEntity deleteProduct(@PathVariable String id){
+        this.deleteProductByIdUseCase.deleteProductById(id);
+        return ResponseEntity.noContent().build();
+    }
 
+
+
+    //getAll paginated
+    @GetMapping()
+    @Operation(summary = "Pega todos os produtos")
+    public ResponseEntity getAllProducts(@PageableDefault Pageable pageable){
+
+        return ResponseEntity.ok().body("working...");
+    }
 
 
 }

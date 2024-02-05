@@ -23,6 +23,8 @@ public class ProductEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private ProductStatusEntityEnum statusEntityEnum;
+    private boolean isActive;
+
 
 
     public ProductEntity(String id, String name, String description, BigDecimal price, Long stock) {
@@ -32,6 +34,7 @@ public class ProductEntity {
         this.price = price;
         this.stock = stock;
         this.statusEntityEnum = ProductStatusEntityEnum.AVAILABLE;
+        this.isActive = true;
     }
 
 

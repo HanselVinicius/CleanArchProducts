@@ -21,7 +21,7 @@ public class FindProductByIdProviderImpl implements FindProductByIdProvider {
 
     @Override
     public Optional<Product> findProductById(String id) {
-        var product = productRepository.findById(id);
+        var product = productRepository.findProductByIdAndIsActiveTrue(id);
         return product.map(productMapper::toProduct);
     }
 }

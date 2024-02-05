@@ -11,5 +11,7 @@ public interface ProductEntityMapper {
 
     ProductEntity toProductUpdateEntity(Product product);
 
+    ProductEntity toProductDeleteEntity(Product product);
+
 
 }
