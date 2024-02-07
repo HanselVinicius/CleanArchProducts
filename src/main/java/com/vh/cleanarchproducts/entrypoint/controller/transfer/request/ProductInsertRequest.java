@@ -13,7 +13,7 @@ public class ProductInsertRequest {
     @NotBlank
     private String description;
     private BigDecimal price;
-    private Long stock;
+    private Long serialNumber;
 
 
 }

@@ -4,6 +4,7 @@ import com.vh.cleanarchproducts.core.domain.Product;
 import com.vh.cleanarchproducts.core.domain.ProductStatusEnum;
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.ProductStatusTransfer;
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.request.ProductInsertRequest;
+import com.vh.cleanarchproducts.entrypoint.controller.transfer.request.ProductUpdateRequest;
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.response.ProductResponse;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class ProductMapperImpl implements ProductMapper {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
-                product.getStock(),
+                product.getSerialNumber(),
                 toProductStatusTransfer(product.getProductStatusEnum()
                 )
         );
@@ -29,7 +30,7 @@ public class ProductMapperImpl implements ProductMapper {
                 productRequest.getName(),
                 productRequest.getDescription(),
                 productRequest.getPrice(),
-                productRequest.getStock()
+                productRequest.getSerialNumber()
         );
     }
 
@@ -39,7 +40,7 @@ public class ProductMapperImpl implements ProductMapper {
                 productRequest.getName(),
                 productRequest.getDescription(),
                 productRequest.getPrice(),
-                productRequest.getStock(),
+                productRequest.getSerialNumber(),
                 toProductStatusEnum(productRequest.getStatus()),
                 true
         );

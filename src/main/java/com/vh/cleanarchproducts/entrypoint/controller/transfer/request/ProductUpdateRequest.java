@@ -1,4 +1,4 @@
-package com.vh.cleanarchproducts.entrypoint.controller.mapper;
+package com.vh.cleanarchproducts.entrypoint.controller.transfer.request;
 
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.ProductStatusTransfer;
 import jakarta.validation.constraints.NotBlank;
@@ -14,6 +14,6 @@ public class ProductUpdateRequest {
     @NotBlank
     private String description;
     private BigDecimal price;
-    private Long stock;
+    private Long serialNumber;
     private ProductStatusTransfer status;
 }

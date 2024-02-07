@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  prodocts-api:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    ports:
+        - "8080:8080"
+    depends_on:
+      - redis
+      - db
+      - kafka
+
+  redis:
+    image: "redis:latest"
+    restart: always
+    ports:
+      - "6379:6379"
+
+  kafka:
+    image: "confluentinc/cp-kafka"
+    restart: always
+    ports:
+      - "9092:9092"
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_USER: vinicius
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql

@@ -13,6 +13,6 @@ public class ProductResponse {
     private String name;
     private String description;
     private BigDecimal price;
-    private Long stock;
+    private Long serialNumber;
     private ProductStatusTransfer productStatusTransfer;
 }

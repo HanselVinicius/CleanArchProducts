@@ -19,7 +19,7 @@ public class ProductEntity {
     private String name;
     private String description;
     private BigDecimal price;
-    private Long stock;
+    private Long serialNumber;
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private ProductStatusEntityEnum statusEntityEnum;
@@ -27,12 +27,12 @@ public class ProductEntity {
 
 
 
-    public ProductEntity(String id, String name, String description, BigDecimal price, Long stock) {
+    public ProductEntity(String id, String name, String description, BigDecimal price, Long serialNumber) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.stock = stock;
+        this.serialNumber = serialNumber;
         this.statusEntityEnum = ProductStatusEntityEnum.AVAILABLE;
         this.isActive = true;
     }

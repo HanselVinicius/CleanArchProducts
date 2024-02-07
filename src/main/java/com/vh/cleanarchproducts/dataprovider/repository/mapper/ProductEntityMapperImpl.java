@@ -20,14 +20,14 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
                 .name(productEntity.getName())
                 .description(productEntity.getDescription())
                 .price(productEntity.getPrice())
-                .stock(productEntity.getStock())
+                .serialNumber(productEntity.getSerialNumber())
                 .productStatusEnum(toProductStatusEnum(productEntity.getStatusEntityEnum()))
                 .build();
     }
 
     @Override
     public ProductEntity toProductInsertEntity(Product product) {
-        return new ProductEntity(UUID.randomUUID().toString(), product.getName(), product.getDescription(), product.getPrice(), product.getStock());
+        return new ProductEntity(UUID.randomUUID().toString(), product.getName(), product.getDescription(), product.getPrice(), product.getSerialNumber());
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
-                product.getStock(),
+                product.getSerialNumber(),
                 toProductStatusEntityEnum(product.getProductStatusEnum()),
                 product.isActive()
 
@@ -49,7 +49,7 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
                 product.getName(),
                 product.getDescription(),
                 product.getPrice(),
-                product.getStock(),
+                product.getSerialNumber(),
                 toProductStatusEntityEnum(product.getProductStatusEnum()),
                 false
 

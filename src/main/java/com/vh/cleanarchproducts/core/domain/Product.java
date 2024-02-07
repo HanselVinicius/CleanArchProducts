@@ -17,26 +17,26 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
-    private Long stock;
+    private Long serialNumber;
     private ProductStatusEnum productStatusEnum;
     private boolean isActive;
 
 
-    public Product( String name, String description, BigDecimal price, Long stock) {
+    public Product( String name, String description, BigDecimal price, Long serialNumber) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.stock = stock;
+        this.serialNumber = serialNumber;
         this.productStatusEnum = ProductStatusEnum.AVAILABLE;
         this.isActive = true;
     }
 
 
-    public Product(String name, String description, BigDecimal price, Long stock, ProductStatusEnum productStatusEnum,boolean isActive) {
+    public Product(String name, String description, BigDecimal price, Long serialNumber, ProductStatusEnum productStatusEnum,boolean isActive) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.stock = stock;
+        this.serialNumber = serialNumber;
         this.productStatusEnum = productStatusEnum;
         this.isActive = isActive;
     }
