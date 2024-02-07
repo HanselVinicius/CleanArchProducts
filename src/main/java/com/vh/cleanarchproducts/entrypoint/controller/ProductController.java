@@ -1,6 +1,7 @@
 package com.vh.cleanarchproducts.entrypoint.controller;
 
 import com.vh.cleanarchproducts.core.usecase.product.*;
+import com.vh.cleanarchproducts.core.usecase.product.impl.BuyProductImpl;
 import com.vh.cleanarchproducts.entrypoint.controller.mapper.ProductMapper;
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.request.ProductUpdateRequest;
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.request.ProductInsertRequest;
@@ -39,6 +40,9 @@ public class ProductController {
     @Autowired
     private ProductMapper productMapper;
 
+    @Autowired
+    private BuyProductUseCase buyProductUseCase;
+
     @GetMapping("/{id}")
     @Cacheable(value = "product", key = "#id")
     @Operation(summary = "Pega um produto pelo id")
@@ -66,7 +70,6 @@ public class ProductController {
         return ResponseEntity.ok(productResponse);
     }
 
-    //delete
     @DeleteMapping("/{id}")
     @CacheEvict(value = "product", allEntries = true)
     @Operation(summary = "Deleta um produto")
@@ -77,7 +80,6 @@ public class ProductController {
 
 
 
-    //getAll paginated
     @GetMapping()
     @Cacheable(value = "product", key = "'allProducts'")
     @Operation(summary = "Pega todos os produtos")
@@ -91,7 +93,7 @@ public class ProductController {
     @CacheEvict(value = "product", allEntries = true)
     @Operation(summary = "Faz a compra de um produto")
     public ResponseEntity buyProduct(@PathVariable String id){
-
+        this.buyProductUseCase.buyProduct(id);
         return ResponseEntity.ok("working....");
     }
 

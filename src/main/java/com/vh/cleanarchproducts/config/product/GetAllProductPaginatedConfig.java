@@ -1,4 +1,4 @@
-package com.vh.cleanarchproducts.config;
+package com.vh.cleanarchproducts.config.product;
 
 import com.vh.cleanarchproducts.core.dataprovider.GetAllProductPaginatedProvider;
 import com.vh.cleanarchproducts.core.usecase.product.GetAllProductPaginatedUseCase;
