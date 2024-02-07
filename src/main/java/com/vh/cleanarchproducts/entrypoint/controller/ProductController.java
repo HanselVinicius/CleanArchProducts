@@ -1,10 +1,6 @@
 package com.vh.cleanarchproducts.entrypoint.controller;
 
-import com.vh.cleanarchproducts.core.domain.Product;
-import com.vh.cleanarchproducts.core.usecase.product.DeleteProductByIdUseCase;
-import com.vh.cleanarchproducts.core.usecase.product.FindProductByIdUseCase;
-import com.vh.cleanarchproducts.core.usecase.product.InsertProductUseCase;
-import com.vh.cleanarchproducts.core.usecase.product.UpdateProductUseCase;
+import com.vh.cleanarchproducts.core.usecase.product.*;
 import com.vh.cleanarchproducts.entrypoint.controller.mapper.ProductMapper;
 import com.vh.cleanarchproducts.entrypoint.controller.mapper.ProductUpdateRequest;
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.request.ProductInsertRequest;
@@ -13,7 +9,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +30,9 @@ public class ProductController {
 
     @Autowired
     private DeleteProductByIdUseCase deleteProductByIdUseCase;
+
+    @Autowired
+    private GetAllProductPaginatedUseCase getAllPaginatedUseCase;
 
     @Autowired
     private ProductMapper productMapper;
@@ -77,8 +75,8 @@ public class ProductController {
     @GetMapping()
     @Operation(summary = "Pega todos os produtos")
     public ResponseEntity getAllProducts(@PageableDefault Pageable pageable){
-
-        return ResponseEntity.ok().body("working...");
+        var products = this.getAllPaginatedUseCase.getAllPaginated(pageable.getPageNumber(), pageable.getPageSize());
+        return ResponseEntity.ok().body(this.productMapper.toProductResponseList(products));
     }
 
 

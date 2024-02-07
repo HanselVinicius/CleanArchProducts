@@ -7,6 +7,8 @@ import com.vh.cleanarchproducts.entrypoint.controller.transfer.request.ProductIn
 import com.vh.cleanarchproducts.entrypoint.controller.transfer.response.ProductResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ProductMapperImpl implements ProductMapper {
     @Override
@@ -41,6 +43,11 @@ public class ProductMapperImpl implements ProductMapper {
                 toProductStatusEnum(productRequest.getStatus()),
                 true
         );
+    }
+
+    @Override
+    public List<ProductResponse> toProductResponseList(List<Product> products) {
+        return products.stream().map(this::toProductResponse).toList();
     }
 
     private ProductStatusEnum toProductStatusEnum(ProductStatusTransfer status) {

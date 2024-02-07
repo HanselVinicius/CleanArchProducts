@@ -7,6 +7,7 @@ import com.vh.cleanarchproducts.dataprovider.entity.ProductEntity;
 import com.vh.cleanarchproducts.dataprovider.entity.ProductStatusEntityEnum;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.UUID;
 
 @Component
@@ -53,6 +54,11 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
                 false
 
         );
+    }
+
+    @Override
+    public List<Product> toProductList(List<ProductEntity> productEntities) {
+        return productEntities.stream().map(this::toProduct).toList();
     }
 
     private ProductStatusEntityEnum toProductStatusEntityEnum(ProductStatusEnum productStatusEnum) {
