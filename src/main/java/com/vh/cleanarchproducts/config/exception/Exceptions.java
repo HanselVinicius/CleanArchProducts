@@ -1,5 +1,6 @@
 package com.vh.cleanarchproducts.config.exception;
 
+import com.vh.cleanarchproducts.core.domain.ProductNotAvailableException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.apache.kafka.common.errors.ProducerFencedException;
 import org.apache.kafka.common.errors.ResourceNotFoundException;
@@ -25,8 +26,8 @@ public class Exceptions {
     }
 
 
-    @ExceptionHandler(ProducerFencedException.class)
-    public ResponseEntity<ApiException> notAvailable(ProducerFencedException e, HttpServletRequest request) {
+    @ExceptionHandler(ProductNotAvailableException.class)
+    public ResponseEntity<ApiException> notAvailable(ProductNotAvailableException e, HttpServletRequest request) {
         String error = e.getMessage();
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ApiException err = new ApiException(

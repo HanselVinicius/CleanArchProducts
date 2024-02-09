@@ -14,17 +14,17 @@ public class BuyProductImpl implements BuyProductUseCase {
     private BuyProductProvider buyProductProvider;
     private List<BuyValidation> buyValidationList;
 
-    public BuyProductImpl(FindProductByIdUseCase findProductByIdUseCase,BuyProductProvider buyProductProvider) {
-        this.buyProductProvider = buyProductProvider;
+    public BuyProductImpl(FindProductByIdUseCase findProductByIdUseCase, BuyProductProvider buyProductProvider, List<BuyValidation> buyValidationList) {
         this.findProductByIdUseCase = findProductByIdUseCase;
+        this.buyProductProvider = buyProductProvider;
+        this.buyValidationList = buyValidationList;
     }
-
 
     @Override
     public void buyProduct(String productId) {
         var product = findProductByIdUseCase.findProductById(productId);
         buyValidationList.forEach(buyValidation -> {
-            if(buyValidation.isValid(product)){
+            if(!buyValidation.isValid(product)){
                 throw new ProductNotAvailableException("Product not available");
             }
         });

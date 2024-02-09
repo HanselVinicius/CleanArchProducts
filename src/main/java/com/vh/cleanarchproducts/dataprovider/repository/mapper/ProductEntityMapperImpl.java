@@ -22,6 +22,7 @@ public class ProductEntityMapperImpl implements ProductEntityMapper {
                 .price(productEntity.getPrice())
                 .serialNumber(productEntity.getSerialNumber())
                 .productStatusEnum(toProductStatusEnum(productEntity.getStatusEntityEnum()))
+                .isActive(productEntity.isActive())
                 .build();
     }
 

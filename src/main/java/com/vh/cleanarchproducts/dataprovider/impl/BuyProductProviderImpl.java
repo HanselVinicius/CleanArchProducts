@@ -2,6 +2,7 @@ package com.vh.cleanarchproducts.dataprovider.impl;
 
 import com.vh.cleanarchproducts.core.dataprovider.BuyProductProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,7 @@ public class BuyProductProviderImpl implements BuyProductProvider {
     public KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
+    @CacheEvict(value = "product", allEntries = true)
     public void sendBuyProductMessage(String productId) {
         this.kafkaTemplate.send("buy-product",productId);
 

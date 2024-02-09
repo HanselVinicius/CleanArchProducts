@@ -44,7 +44,6 @@ public class ProductController {
     private BuyProductUseCase buyProductUseCase;
 
     @GetMapping("/{id}")
-    @Cacheable(value = "product", key = "#id")
     @Operation(summary = "Pega um produto pelo id")
     public ResponseEntity getProductById(@PathVariable String id) {
         var productResponse = productMapper.toProductResponse(findProductByIdUseCase.findProductById(id));
@@ -53,7 +52,6 @@ public class ProductController {
 
     @PostMapping
     @Transactional
-    @CacheEvict(value = "product", allEntries = true)
     @Operation(summary = "Insere um produto")
     public ResponseEntity insertProduct(@RequestBody @Valid ProductInsertRequest productRequest) {
         var createdProduct = insertProductUseCase.insertProduct(productMapper.productInsertRequestToProduct(productRequest));
@@ -62,7 +60,6 @@ public class ProductController {
 
     @PutMapping("/{id}")
     @Transactional
-    @CacheEvict(value = "product", allEntries = true)
     @Operation(summary = "Atualiza um produto")
     public ResponseEntity updateProduct(@PathVariable String id, @RequestBody @Valid ProductUpdateRequest productRequest) {
         var productToUpdate = productMapper.productUpdateRequestToProduct(productRequest);
@@ -71,7 +68,6 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    @CacheEvict(value = "product", allEntries = true)
     @Operation(summary = "Deleta um produto")
     public ResponseEntity deleteProduct(@PathVariable String id){
         this.deleteProductByIdUseCase.deleteProductById(id);
@@ -81,20 +77,18 @@ public class ProductController {
 
 
     @GetMapping()
-    @Cacheable(value = "product", key = "'allProducts'")
     @Operation(summary = "Pega todos os produtos")
     public ResponseEntity getAllProducts(@PageableDefault Pageable pageable){
         var products = this.getAllPaginatedUseCase.getAllPaginated(pageable.getPageNumber(), pageable.getPageSize());
-        return ResponseEntity.ok().body(this.productMapper.toProductResponseList(products));
+        return ResponseEntity.ok(this.productMapper.toProductResponseList(products));
     }
 
     @PostMapping("/{id}")
     @Transactional
-    @CacheEvict(value = "product", allEntries = true)
     @Operation(summary = "Faz a compra de um produto")
     public ResponseEntity buyProduct(@PathVariable String id){
         this.buyProductUseCase.buyProduct(id);
-        return ResponseEntity.ok("working....");
+        return ResponseEntity.noContent().build();
     }
 
 

@@ -2,6 +2,7 @@ package com.vh.cleanarchproducts.core.domain;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Builder
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Product {
+public class Product implements Serializable {
 
     @Setter
     private String id;
@@ -18,7 +19,9 @@ public class Product {
     private String description;
     private BigDecimal price;
     private Long serialNumber;
+    @Setter
     private ProductStatusEnum productStatusEnum;
+    @Setter
     private boolean isActive;
 
 
@@ -41,7 +44,4 @@ public class Product {
         this.isActive = isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 }
