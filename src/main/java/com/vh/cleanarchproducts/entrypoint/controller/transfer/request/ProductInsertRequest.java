@@ -1,5 +1,6 @@
 package com.vh.cleanarchproducts.entrypoint.controller.transfer.request;
 
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ public class ProductInsertRequest {
     private String name;
     @NotBlank
     private String description;
+    @DecimalMin(value = "10.0")
     private BigDecimal price;
     private Long serialNumber;
 

@@ -76,7 +76,7 @@ public class ProductController {
 
 
 
-    @GetMapping()
+    @GetMapping
     @Operation(summary = "Pega todos os produtos")
     public ResponseEntity getAllProducts(@PageableDefault Pageable pageable){
         var products = this.getAllPaginatedUseCase.getAllPaginated(pageable.getPageNumber(), pageable.getPageSize());

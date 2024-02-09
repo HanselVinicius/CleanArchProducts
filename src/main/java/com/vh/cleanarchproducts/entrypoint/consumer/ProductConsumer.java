@@ -9,11 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductConsumer {
 
-
     @Autowired
     public BuyProductConfirmationUseCase buyProductConfirmationUseCase;
 
-    @KafkaListener(topics = "buy-product",groupId = "product-guys-group")
+    private static final String GROUP_ID = "product-guys-group";
+
+    private static final String TOPIC = "buy-product";
+
+    @KafkaListener(topics = TOPIC,groupId = GROUP_ID)
     public void consume(@Payload String message){
         this.buyProductConfirmationUseCase.confirmBuy(message);
     }

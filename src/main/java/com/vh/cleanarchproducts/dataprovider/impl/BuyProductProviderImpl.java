@@ -12,10 +12,12 @@ public class BuyProductProviderImpl implements BuyProductProvider {
     @Autowired
     public KafkaTemplate<String, String> kafkaTemplate;
 
+    private static final String TOPIC = "buy-product";
+
     @Override
     @CacheEvict(value = "product", allEntries = true)
     public void sendBuyProductMessage(String productId) {
-        this.kafkaTemplate.send("buy-product",productId);
+        this.kafkaTemplate.send(TOPIC,productId);
 
     }
 }
