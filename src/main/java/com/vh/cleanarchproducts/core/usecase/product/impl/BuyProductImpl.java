@@ -28,6 +28,6 @@ public class BuyProductImpl implements BuyProductUseCase {
                 throw new ProductNotAvailableException("Product not available");
             }
         });
-        this.buyProductProvider.sendBuyProductMessage(productId);
+        this.buyProductProvider.sendBuyProductMessage(product);
     }
 }
