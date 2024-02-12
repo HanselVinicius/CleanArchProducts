@@ -1,7 +1,7 @@
 package com.vh.cleanarchproducts.config;
 
 import com.vh.cleanarchproducts.core.usecase.validations.BuyValidation;
-import com.vh.cleanarchproducts.core.usecase.validations.isProductAvailableValidation;
+import com.vh.cleanarchproducts.core.usecase.validations.IsProductAvailableValidation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +12,6 @@ public class BuyValidationConfig {
 
     @Bean
     public List<BuyValidation> buyValidations(){
-        return List.of(new isProductAvailableValidation());
+        return List.of(new IsProductAvailableValidation());
     }
 }

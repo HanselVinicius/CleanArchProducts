@@ -10,11 +10,9 @@ public class BuyProductConfirmationImpl implements BuyProductConfirmationUseCase
 
     private final BuyProductConfirmationProvider buyProductConfirmationProvider;
 
-    private final FindProductByIdUseCase findProductByIdUseCase;
 
-    public BuyProductConfirmationImpl(BuyProductConfirmationProvider buyProductConfirmationProvider, FindProductByIdUseCase findProductByIdUseCase) {
+    public BuyProductConfirmationImpl(BuyProductConfirmationProvider buyProductConfirmationProvider) {
         this.buyProductConfirmationProvider = buyProductConfirmationProvider;
-        this.findProductByIdUseCase = findProductByIdUseCase;
     }
 
     @Override

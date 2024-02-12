@@ -12,7 +12,7 @@ public class BuyProductConfirmationConfig {
 
 
     @Bean
-    public BuyProductConfirmationUseCase buyProductConfirmationUseCase(BuyProductConfirmationProvider buyProductConfirmationProvider, FindProductByIdUseCase findProductByIdUseCase){
-        return new BuyProductConfirmationImpl(buyProductConfirmationProvider, findProductByIdUseCase);
+    public BuyProductConfirmationUseCase buyProductConfirmationUseCase(BuyProductConfirmationProvider buyProductConfirmationProvider){
+        return new BuyProductConfirmationImpl(buyProductConfirmationProvider);
     }
 }

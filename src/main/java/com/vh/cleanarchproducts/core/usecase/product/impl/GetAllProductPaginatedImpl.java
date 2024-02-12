@@ -6,11 +6,11 @@ import com.vh.cleanarchproducts.core.usecase.product.GetAllProductPaginatedUseCa
 
 import java.util.List;
 
-public class GetAllProductPaginatedUseCaseImpl implements GetAllProductPaginatedUseCase {
+public class GetAllProductPaginatedImpl implements GetAllProductPaginatedUseCase {
 
     private final GetAllProductPaginatedProvider getAllProductPaginatedProvider;
 
-    public GetAllProductPaginatedUseCaseImpl(GetAllProductPaginatedProvider getAllProductPaginatedProvider) {
+    public GetAllProductPaginatedImpl(GetAllProductPaginatedProvider getAllProductPaginatedProvider) {
         this.getAllProductPaginatedProvider = getAllProductPaginatedProvider;
     }
 
