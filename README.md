@@ -21,6 +21,6 @@ core: A camada core contém a lógica central do domínio da aplicação. Aqui e
 
 dataprovider: A camada dataprovider é responsável por se comunicar com provedores externos de dados, como bancos de dados, serviços web ou qualquer outra fonte de dados externa. Esta camada implementa interfaces definidas na camada core para acesso e manipulação de dados.
 
-entrypoint: A camada entrypoint é a entrada da aplicação, onde as solicitações externas são recebidas e processadas. Isso inclui controladores REST, classes responsáveis pela conversão de dados de entrada e saída, e qualquer outra lógica relacionada à interação com o mundo externo.
+entrypoint: A camada entrypoint é a entrada da aplicação, onde as solicitações externas são recebidas e processadas. Isso inclui controladores REST.
 
-config: A camada config é responsável pela configuração do Spring. Aqui são definidas todas as configurações necessárias para o funcionamento da aplicação, como configurações de banco de dados, configurações de segurança, configurações de beans, entre outras.
+config: A camada config é responsável pela configuração do Spring. Aqui são definidas todas as configurações necessárias para o funcionamento da aplicação, como configurações do kafka, configurações de beans, entre outras.
